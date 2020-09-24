@@ -55,8 +55,8 @@ function generatePassword() {
     selection = pNumbers.concat(capLetter);
   } else if (passNumber && passLower) {
     selection = pNumbers.concat(lowLetter);
-  } else if (passNumber && passCapital && passLower) {
-    selection = pNumbers.concat(capLetter, lowLetter);
+  } else if (passNumber && passSpecial && passLower) {
+    selection = pNumbers.concat(specChar, lowLetter);
   } else if (passSpecial && passCapital && passLower) {
     selection = specChar.concat(capLetter, lowLetter);
   } else if (passSpecial && passCapital) {
