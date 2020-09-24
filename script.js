@@ -15,12 +15,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-var characterAmount;
-var passNumber;
-var passSpecial;
-var passCapital;
-var passLower;
-var selection;
+// CREATED VARIABLE TO CONTAIN PASSWORD ARRAY AS WELL AS VARIABLES FOR EACH CHARACTER WE COULD BE USING TO CREATE THE PASSWORD
 
 var password = [];
 
@@ -29,6 +24,7 @@ var lowLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var specChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ",", "-", "=", "+", "[", "]", "{", "}", ";", ":", "'", "/", "?", "<", ">", ".", "|"];
 var pNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
+// USER PROMPTS TO DECIDE HOW LONG PASSWORD SHOULD BE AND WHAT TYPE OF CHARACTERS SHOULD BE USED, IF INCORRECT INPUT IS GIVEN WILL STOP THE PROCESS
 
 function generatePassword() {
   characterAmount = prompt("Please choose how many characters you would like your password to be, between 8 and 128.");
@@ -43,38 +39,20 @@ function generatePassword() {
     passLower = confirm("Would you like your password to contain lowercase letters?");
   }
 
-  if (passNumber && passSpecial && passCapital && passLower) {
-    selection = pNumbers.concat(capLetter, lowLetter, specChar);
-  } else if (passNumber && passSpecial && passCapital) {
-    selection = pNumbers.concat(specChar, capLetter);
-  } else if (passNumber && passSpecial) {
-    selection = pNumbers.concat(specChar);
-  } else if (passNumber && passCapital && passLower) {
-    selection = pNumbers.concat(capLetter, lowLetter);
-  } else if (passNumber && passCapital) {
-    selection = pNumbers.concat(capLetter);
-  } else if (passNumber && passLower) {
-    selection = pNumbers.concat(lowLetter);
-  } else if (passNumber && passSpecial && passLower) {
-    selection = pNumbers.concat(specChar, lowLetter);
-  } else if (passSpecial && passCapital && passLower) {
-    selection = specChar.concat(capLetter, lowLetter);
-  } else if (passSpecial && passCapital) {
-    selection = specChar.concat(capLetter);
-  } else if (passSpecial && passLower) {
-    selection = specChar.concat(lowLetter);
-  } else if (passCapital && passLower) {
-    selection = capLetter.concat(lowLetter);
-  } else if (passNumber) {
+  // THESE IF STATEMENTS TAKE THE USER INPUT THROUGH PROMPTS AND COMBINE THE ARRAYS CONTAINING CHARACTERS THE USER WISHES TO USE
+
+  if (passNumber) {
     selection = pNumbers;
-  } else if (passSpecial) {
-    selection = specChar;
-  } else if (passCapital) {
-    selection = capLetter;
-  } else if (passLower) {
-    selection = lowLetter;
+  } if (passSpecial) {
+    selection = selection.concat(specChar);
+  } if (passCapital) {
+    selection = selection.concat(capLetter);
+  } if (passLower) {
+    selection = selection.concat(lowLetter);
   }
 
+  // FOR LOOP WHICH WILL RANDOMLY ASSIGN A CHARACTER IN THE FINAL CHARACTER ARRAY - WILL CONTINUE TO ADD CHARACTERS AT RANDOM UNTIL IT HAS REACHED
+  // THE AMOUNT OF CHARACTERS THE USER REQUESTED - WILL THEN TAKE THE NEW PASSWORD ARRAY, TURN IT INTO A STRING, AND PUSH IT TO BE USED.
 
   for(var i = 0; i < characterAmount; i++) {
     var j = selection[Math.floor(Math.random() * selection.length)];
