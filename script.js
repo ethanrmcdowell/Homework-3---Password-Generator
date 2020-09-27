@@ -5,6 +5,7 @@ var lowLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var specChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ",", "-", "=", "+", "[", "]", "{", "}", ";", ":", "'", "/", "?", "<", ">", ".", "|"];
 var pNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var generateBtn = document.querySelector("#generate");
+var selection = [];
 
 // THE PASSWORD THAT IS RETURNED FROM THE GENERATEPASSWORD FUNCTION IS THEN PULLED INTO THIS FUNCTION WHICH CHANGES THE TEXT AREA IN THE HTML TO SHOW THE GENERATED PASSWORD
 function writePassword() {
@@ -29,11 +30,16 @@ function generatePassword() {
     passSpecial = confirm("Would you like your password to contain special characters?");
     passCapital = confirm("Would you like your password to contain capital letters?");
     passLower = confirm("Would you like your password to contain lowercase letters?");
-  }
+
+    console.log(passNumber);
+    console.log(passSpecial);
+    console.log(passCapital);
+    console.log(passLower);
+  
 
   // THESE IF STATEMENTS TAKE THE USER INPUT THROUGH PROMPTS AND COMBINE THE ARRAYS CONTAINING CHARACTERS THE USER WISHES TO USE
   if (passNumber) {
-    selection = pNumbers;
+    selection = selection.concat(pNumbers);
   }
   if (passSpecial) {
     selection = selection.concat(specChar);
@@ -43,7 +49,7 @@ function generatePassword() {
   }
   if (passLower) {
     selection = selection.concat(lowLetter);
-  }
+  }};
 
   // FOR LOOP WHICH WILL RANDOMLY ASSIGN A CHARACTER IN THE FINAL CHARACTER ARRAY - WILL CONTINUE TO ADD CHARACTERS AT RANDOM UNTIL IT HAS REACHED
   // THE AMOUNT OF CHARACTERS THE USER REQUESTED - WILL THEN TAKE THE NEW PASSWORD ARRAY, TURN IT INTO A STRING, AND PUSH IT TO BE USED.
