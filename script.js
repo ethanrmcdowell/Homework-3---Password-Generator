@@ -5,7 +5,9 @@ var lowLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var specChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", ",", "-", "=", "+", "[", "]", "{", "}", ";", ":", "'", "/", "?", "<", ">", ".", "|"];
 var pNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var generateBtn = document.querySelector("#generate");
+var restartBtn = document.querySelector("#restart");
 var selection = [];
+var characterAmount;
 
 // THE PASSWORD THAT IS RETURNED FROM THE GENERATEPASSWORD FUNCTION IS THEN PULLED INTO THIS FUNCTION WHICH CHANGES THE TEXT AREA IN THE HTML TO SHOW THE GENERATED PASSWORD
 function writePassword() {
@@ -18,13 +20,22 @@ function writePassword() {
 // EVENT LISTENER, WHEN THE GENERATE PASSWORD BUTTON IS CLICKED IT WILL RUN THE WRITEPASSWORD FUNCTION
 generateBtn.addEventListener("click", writePassword);
 
+// EVENT LISTENER, WHEN THE RESTART BUTTON IS PRESSED, RUNS RELOADPAGE FUNCTION
+restartBtn.addEventListener("click", reloadPage);
+
+function reloadPage() {
+  location.reload();
+}
+
 // USER PROMPTS TO DECIDE HOW LONG PASSWORD SHOULD BE AND WHAT TYPE OF CHARACTERS SHOULD BE USED, IF INCORRECT INPUT IS GIVEN WILL STOP THE PROCESS
 function generatePassword() {
   characterAmount = prompt("Please choose how many characters you would like your password to be, between 8 and 128.");
   if (!characterAmount) {
     alert("This input needs a value");
+    location.reload();
   } else if (characterAmount < 8 || characterAmount > 128) {
     alert("Invalid entry, please choose between 8 and 128 characters.");
+    location.reload();
   } else {
     passNumber = confirm("Would you like your password to contain numbers?");
     passSpecial = confirm("Would you like your password to contain special characters?");
@@ -35,6 +46,7 @@ function generatePassword() {
     console.log(passSpecial);
     console.log(passCapital);
     console.log(passLower);
+    console.log(characterAmount);
   
 
   // THESE IF STATEMENTS TAKE THE USER INPUT THROUGH PROMPTS AND COMBINE THE ARRAYS CONTAINING CHARACTERS THE USER WISHES TO USE
